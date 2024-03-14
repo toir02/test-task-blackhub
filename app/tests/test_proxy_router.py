@@ -11,7 +11,6 @@ def test_client():
 
 def test_get_html_content(test_client):
 
-    # TestCase #1
     response = test_client.get("/politica.html")
     assert response.status_code == 200
     assert "message" in response.json()
@@ -20,3 +19,8 @@ def test_get_html_content(test_client):
     assert "Black <span> Russia" not in content
     assert "BLACK\n span RUSSIA" not in content
     assert "BlackHub Games" in content
+
+
+def test_get_html_content_patch_response(test_client):
+    response = test_client.patch("/politica.html")
+    assert response.status_code == 405
