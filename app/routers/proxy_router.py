@@ -1,14 +1,17 @@
 import re
 
-from fastapi import APIRouter, HTTPException
+from fastapi import (
+    APIRouter,
+    HTTPException
+)
 
 from app.schemas.proxy_schemas import ProxyRequest
 from app.services.utils import get_page_content
 
-router = APIRouter()
+proxy_router = APIRouter()
 
 
-@router.api_route(
+@proxy_router.api_route(
     "/{path:path}",
     methods=["POST", "PUT", "PATCH", "DELETE"]
 )
@@ -19,7 +22,7 @@ async def method_not_allowed(path: str = ProxyRequest) -> None:
     )
 
 
-@router.get("/{path:path}")
+@proxy_router.get("/{path:path}")
 async def get_html_content(
         path: str = ProxyRequest
 ) -> dict[str, str]:
