@@ -27,7 +27,7 @@ async def get_html_content(
         path: str = ProxyRequest
 ) -> dict[str, str]:
     content = await get_page_content(path)
-    content = re.sub(r'(?i)Black\s*Russia', 'BlackHub Games', content)
+    content = re.sub(r'(?i)Black\s*<[^>]*>\s*Russia|(?i)Black\s*Russia', 'BlackHub Games', content)
     return {
         "message": content
     }
